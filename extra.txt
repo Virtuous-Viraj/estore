@@ -1,0 +1,3 @@
+Alan Ai chatbot
+
+Build a mailing system from scratch to send emails to the user for email verification links and reset code password.
