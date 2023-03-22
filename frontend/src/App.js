@@ -30,7 +30,11 @@ import FooterComponent from './components/FooterComponent';
 
 //user components
 // import UserChatComponent from './components/user/UserChatComponent';
-import RoutesWithUserChatComponent from './components/user/RoutesWithUserChatComponent';
+import RoutesWithUserChatComponent from './utils/ScrollTop';
+
+
+// import ScrollTop from './utils/ScrollTop';
+
 
 function App() {
   return (
@@ -46,7 +50,7 @@ function App() {
             <Route path="/product-details/:id" element={<ProductDetails />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="*" element="Requested Page Does Not Exist" />
+            <Route path="*" element="nope" />
             </Route>
 
 
