@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 function ProductDetails() {
 
   var options = {
-    scale : 2,
+    scale : 1.25,
     offset : {vertical:0, horizontal : 0}
   }
   useEffect(()=>{
@@ -23,7 +23,7 @@ function ProductDetails() {
     <Container>
       <AddedToCartMessageComponent/>
     <Row className="mt-5">
-       <Col style={{zIndex:1}} syt md={4}>
+       <Col style={{zIndex:1}}  md={4}>
         <div id="first">
         <Image crossOrigin='anonymous' fluid src="/images/tablets-category.png"/>
         </div>

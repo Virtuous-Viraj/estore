@@ -15,7 +15,7 @@ function CategoryCardComponent({ category, idx }) {
     ]
     return (
         <Card style={{ width: '29rem' }}>
-            <Card.Img variant="top" src={images[idx]} />
+            <Card.Img variant="top" src={images[idx]} crossOrigin="anonymous"/>
             <Card.Body>
                 <Card.Title>{category}</Card.Title>
                 <Card.Text>

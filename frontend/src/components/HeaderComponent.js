@@ -31,7 +31,7 @@ function HeaderComponent() {
             <Nav.Link as={Link} to="/admin/orders">Admin
               <span className='position-absolute top-1 start-10 translate-middle p-2 bg-danger border border-light rounded-circle'></span>
             </Nav.Link>
-            <Nav.Link as={Link} to="/pricing">Pricing</Nav.Link>
+            {/* <Nav.Link as={Link} to="/pricing">Pricing</Nav.Link> */}
             {/* <Nav.Link as={Link} to="/cart">
 
               CART

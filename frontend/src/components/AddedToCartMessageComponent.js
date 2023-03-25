@@ -8,9 +8,10 @@ function AddedToCartMessageComponent() {
     <Alert show={show} variant="success" onClose={() => setShow(false)} dismissible>
     <Alert.Heading>Product added to your Cart</Alert.Heading>
     <p>
-        <Button variant="suceess">Go Back</Button>{" "}
-        <Link to="/cart"></Link>
-        <Button variant="danger">Go to Cart</Button>
+      <Link to="/product-list"><Button variant="suceess">Go Back</Button></Link>
+        {" "}
+        <Link to="/cart"><Button variant="danger">Go to Cart</Button></Link>
+        
     </p>
     </Alert>
     </>

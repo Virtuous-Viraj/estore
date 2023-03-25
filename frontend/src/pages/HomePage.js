@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductCarouselComponenet from '../components/user/ProductCarouselComponenet'
+import ProductCarouselComponenet from '../components/ProductCarouselComponenet'
 import CategoryCardComponent from '../components/CategoryCardComponent'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
