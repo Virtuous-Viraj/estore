@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-
+app.use(express.json())
 const Product = require("./models/ProductModel")
 const apiRoutes = require("./routes/apiRoutes")
 
@@ -49,6 +49,10 @@ connectDB()
 
 app.use('/api', apiRoutes)
 
+app.use((error, req, res, next)=>{
+    console.error(error)
+    next(error)
+})
 app.use((error, req,res, next)=>{
     res.status(500).json({
         message : error.message,

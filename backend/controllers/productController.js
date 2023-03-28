@@ -1,8 +1,12 @@
-const Product = require("../models/ProductModel")
+const Category = require("../models/CategoryModel")
 
-const getProducts = (req, res) =>{
-    Product.create({name : "Panasonic"})
-    res.send("Hadling products routes, e.g serch for products")
+const getCategories = async (req, res, next) => {
+    try {
+        console.log("Hi")
+        const categories = await Category.find({}).sort({name: "asc"}).orFail()
+        res.json(categories)
+    } catch(error) {
+        next(error)
+    }
 }
-
-module.exports = getProducts
+module.exports = getCategories
