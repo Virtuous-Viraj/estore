@@ -1,8 +1,12 @@
 const express = require('express')
+const fileUpload = require('express-fileupload')
 const app = express()
+const cookieParser = require ('cookie-parser')
 const port = 3000
 app.use(express.json())
-const Product = require("./models/ProductModel")
+app.use(cookieParser())
+app.use(fileUpload())
+// const Product = require("./models/ProductModel")
 const apiRoutes = require("./routes/apiRoutes")
 
 app.get('/',async (req, res,next) => {

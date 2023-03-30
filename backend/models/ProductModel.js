@@ -31,14 +31,14 @@ const productSchema = new Schema({
         type : Number,
         required : true
     },
-    Rating : {
+    rating : {
         type : Number,
     },
     sales : {
         type : Number,
         default : 0
     },
-    attr : [
+    attrs : [
         {key : {type : String}, value : {type : String}}
     ],
     images : [imageSchema],

@@ -9,7 +9,7 @@ const orderRoutes =  require("./orderRoutes")
 // routes related to /products will be handled by productRoutes which is declared above
 app.use("/products", productRoutes)
 app.use("/categories", categoryRoutes)
-app.use("/user", userRoutes)
+app.use("/users", userRoutes)
 app.use("/orders", orderRoutes)
 // app.use("/admin", adminRoutes)
 module.exports = app
