@@ -17,7 +17,7 @@ const orderSchema = mongoose.Schema(
                 type : Number, required : true
             }
         },
-        cartitems : [
+        cartItems : [
             {
                 name : {
                     type : String,
@@ -32,7 +32,7 @@ const orderSchema = mongoose.Schema(
                 image : {
                     path : {
                         type : String, required : true
-                    }
+                     }
                 },
                 // number of products that a user wants to buy
                 quantity : {
@@ -46,6 +46,11 @@ const orderSchema = mongoose.Schema(
                 }
             }
         ],
+        paymentMethod : {
+            type : String,
+            required : true,
+
+        },
         transactionResult : {
             status : {type : String},
             createTime : {type : String},

@@ -15,6 +15,9 @@ const Product = require("../models/ProductModel")
 const Review = require("../models/ReviewModel")
 const User = require("../models/UserModel")
 const Order = require("../models/OrderModel")
+
+// console.log(process.argv[2])
+
 // asynchronous function to insert the data into the model
 const importData = async () =>{
     try {
@@ -27,19 +30,24 @@ const importData = async () =>{
         await Review.collection.deleteMany({})
         await User.collection.deleteMany({})
         await Order.collection.deleteMany({})
-
-        await Category.insertMany(categoryData)
-        const reviews = await Review.insertMany(reviewData)
-        const sampleProducts = productData.map((product)=>{
-            reviews.map((review)=>{
-                product.reviews.push(review._id)
+        if(process.argv[2] !== "-d")
+        {
+            await Category.insertMany(categoryData)
+            const reviews = await Review.insertMany(reviewData)
+            const sampleProducts = productData.map((product)=>{
+                reviews.map((review)=>{
+                    product.reviews.push(review._id)
+                })
+                return {...product}
             })
-            return {...product}
-        })
-        await Product.insertMany(sampleProducts)
-        await User.insertMany(userData)
-        await Order.insertMany(orderData)
-        console.log("Seeder data proceeded successfully")
+            await Product.insertMany(sampleProducts)
+            await User.insertMany(userData)
+            await Order.insertMany(orderData)
+            console.log("Seeder data imported successfully")
+            process.exit()
+            return
+        }
+        console.log("seeder data deleted successfully")
         process.exit()
     } catch (error) {
         console.error("Error while processing seeder data", error)

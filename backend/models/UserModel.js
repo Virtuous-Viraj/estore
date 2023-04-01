@@ -20,6 +20,9 @@ const userSchema = mongoose.Schema({
         type : String,
 
     },
+    address : {
+        type : String
+    },
     country : {
         type : String
     },

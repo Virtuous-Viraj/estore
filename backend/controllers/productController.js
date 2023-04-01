@@ -65,7 +65,7 @@ const getProducts = async (req, res, next) => {
     if (sortOption) {
       let sortOpt = sortOption.split("_");
       sort = { [sortOpt[0]]: Number(sortOpt[1]) };
-      console.log(sort);
+      // console.log(sort);
     }
 
     const searchQuery = req.params.searchQuery || "";
@@ -165,7 +165,7 @@ const adminGetProducts = async (req, res, next) => {
 const adminDeleteProduct = async (req ,res, next) =>{
         try {
             const product  = await Product.findById(req.params.id).orFail()
-            await product.remove
+            await Product.deleteOne({_id : req.params.id}).orFail()
             res.json({message : "Product Removed"})
         } catch (error) {
             next(error)
@@ -239,7 +239,7 @@ const adminUpload = async(req, res, next) =>{
         const uploadDirectory = path.resolve(__dirname, "../../frontend", "public", "images", "products")
         // console.log(uploadDirectory)
         let product = await Product.findById(req.query.productId).orFail()
-        console.log(req.query.productId)
+        // console.log(req.query.productId)
         let imagesTable = []
         if(Array.isArray(req.files.images))
         {

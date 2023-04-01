@@ -2,30 +2,31 @@ const express = require('express')
 const fileUpload = require('express-fileupload')
 const app = express()
 const cookieParser = require ('cookie-parser')
-const port = 3000
+const port = 5000
+
 app.use(express.json())
 app.use(cookieParser())
 app.use(fileUpload())
-// const Product = require("./models/ProductModel")
+
 const apiRoutes = require("./routes/apiRoutes")
 
-app.get('/',async (req, res,next) => {
+// app.get('/',async (req, res,next) => {
 
-    try {
-        const product = new Product
-        product.name = "New Product Name"
-        const ProductSave = await product.save()
-        console.log(ProductSave === product)
-        const products = await Product.find()
-        console.log(products.length)
-        res.send("Product Created" + product._id)
-    } catch (error) {
-        next(error)
-    }
-    // console.log("synchronous code")/
-    // throw new Error("Some error occred")
-// res.json({message:"API Running..."})
-})
+//     try {
+//         const product = new Product
+//         product.name = "New Product Name"
+//         const ProductSave = await product.save()
+//         // console.log(ProductSave === product)
+//         const products = await Product.find()
+//         // console.log(products.length)
+//         res.send("Product Created" + product._id)
+//     } catch (error) {
+//         next(error)
+//     }
+//     // console.log("synchronous code")/
+//     // throw new Error("Some error occred")
+// // res.json({message:"API Running..."})
+// })
 
 // take a look at simple database opearation
 
@@ -54,14 +55,27 @@ connectDB()
 app.use('/api', apiRoutes)
 
 app.use((error, req, res, next)=>{
-    console.error(error)
+    if(process.env.NODE_ENV === "development")
+    {
+        console.error(error)
+
+    }
     next(error)
 })
 app.use((error, req,res, next)=>{
-    res.status(500).json({
-        message : error.message,
-        stack : error.stack
-    })
+
+    if(process.env.NODE_ENV === "development")
+    {
+        res.status(500).json({
+            message : error.message,
+            stack : error.stack
+        })
+    }
+    else{
+        res.status(500).json({
+            message : error.message,
+        })
+    }
 })
 
 app.listen(port, ()=>{
