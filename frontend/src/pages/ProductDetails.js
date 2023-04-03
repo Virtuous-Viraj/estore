@@ -6,8 +6,17 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { Rating } from 'react-simple-star-rating';
 import ImageZoom from 'js-image-zoom';
 import { useEffect } from 'react';
-
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/actions/cartActions";
 function ProductDetails() {
+
+  const dispatch = useDispatch()
+
+  const addToCartHandler = () => {
+      dispatch(addToCart(1));
+  }
+
+  const products = useSelector((state) => state.cart.value)
 
   var options = {
     scale : 1.25,
@@ -47,7 +56,7 @@ function ProductDetails() {
             {/* product name, price,
             description, rating */}
               <ListGroup variant="flush">
-                <ListGroup.Item><h1>Product Name</h1></ListGroup.Item>
+                <ListGroup.Item><h1>Product Name {products}</h1></ListGroup.Item>
                 <ListGroup.Item>
                   <Rating readonly size={20} initialValue={4} /> (1)
                 </ListGroup.Item>
@@ -70,7 +79,7 @@ function ProductDetails() {
                   </Form.Select>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Button variant="danger">Add to Cart</Button>
+                  <Button onClick={addToCartHandler} variant="danger">Add to Cart</Button>
                 </ListGroup.Item>
               </ListGroup> 
           </Col>
