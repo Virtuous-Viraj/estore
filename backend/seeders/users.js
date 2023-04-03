@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs")
+const ObjectId = require("mongodb").ObjectId
 // hash password before storing them into the collections
 const users = [
       {
@@ -9,6 +10,7 @@ const users = [
     isAdmin: true,
   },
   {
+    _id :new ObjectId("625add3d78fb449f9d9fe2ee"), 
     name: 'John',
     lastname: 'Doe',
     email: 'john@doe.com',
