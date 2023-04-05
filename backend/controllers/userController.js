@@ -109,7 +109,7 @@ const updateUserProfile = async (req, res, next)=>{
           }
           await user.save();
       
-          res.json({
+         return res.json({
             success: "user updated",
             userUpdated: {
               _id: user._id,
@@ -128,6 +128,7 @@ const updateUserProfile = async (req, res, next)=>{
 const  getUserProfile = async(req, res, next) =>{
         try {
             const user = await User.findById(req.params.id).orFail()
+            // console.log(user)
            return res.send(user)
         } catch (error) {
             next(error)

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import AdminLinksComponent from '../../../components/admin/AdminLinksComponent'
 
 import { useState, useEffect } from 'react'
+import { logout } from "../../../redux/actions/userActions";
+import { useDispatch } from "react-redux"; 
 
 function ProductsPageComponent({fetchProducts, deleteProduct}) {
     const [products, setProducts] = useState([])
@@ -23,9 +25,10 @@ function ProductsPageComponent({fetchProducts, deleteProduct}) {
     fetchProducts(abtctrl)
       .then((res) => setProducts(res))
       .catch((er) =>
-        setProducts([{
-            name : er.response.data.message ? er.response.data.message : er.response.data
-        }])
+        // setProducts([{
+        //     name : er.response.data.message ? er.response.data.message : er.response.data
+        // }])
+        dispatchEvent(logout())
       );
         return () => abtctrl.abort()
     }, [productDeleted])

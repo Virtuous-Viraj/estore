@@ -3,13 +3,16 @@ import { Row, Col, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import AdminLinksComponent from '../../../components/admin/AdminLinksComponent'
 import { useState, useEffect } from 'react'
+import { logout } from "../../../redux/actions/userActions";
+import { useDispatch } from "react-redux";
 function OrdersPageComponent({getOrders}) {
 
   const [orders, setOrders] = useState([])
   useEffect(() => {
       const abtctrl = new AbortController();
-      getOrders(abtctrl).then((res) => setOrders(res)).catch(error =>
-        console.log(error.response.data.message ? error.response.data.message : error.response.data))
+      getOrders(abtctrl).then((res) => setOrders(res)).catch((error) =>
+      dispatchEvent(logout()))
+        // console.log(error.response.data.message ? error.response.data.message : error.response.data))
         return () => abtctrl.abort()
   }, [])
   

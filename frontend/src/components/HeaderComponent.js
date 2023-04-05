@@ -6,8 +6,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Badge from 'react-bootstrap/Badge';
 import { Button, Form, InputGroup } from 'react-bootstrap';
+import { logout } from '../redux/actions/userActions';
+import {useDispatch, useSelector} from 'react-redux'
+
 
 function HeaderComponent() {
+  const dispatch = useDispatch()
+  const { userInfo } = useSelector((state) => state.userRegisterLogin);
+  const itemsCount = useSelector((state) => state.cart.itemsCount)
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -28,24 +34,32 @@ function HeaderComponent() {
             </InputGroup>
           </Nav>
           <Nav>
-            <Nav.Link as={Link} to="/admin/orders">Admin
-              <span className='position-absolute top-1 start-10 translate-middle p-2 bg-danger border border-light rounded-circle'></span>
+            {userInfo.isAdmin?(
+                          <Nav.Link as={Link} to="/admin/orders">Admin
+                          <span className='position-absolute top-1 start-10 translate-middle p-2 bg-danger border border-light rounded-circle'></span>
+                        </Nav.Link>
+            ) : userInfo.name && !userInfo.isAdmin ? (
+
+            <NavDropdown title={`${userInfo.name}${" "}${userInfo.lastname}`} id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/user/my-orders" eventKey="/user/my-orders">My Orders</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/user" eventKey="/user">My Profile</NavDropdown.Item>
+              <NavDropdown.Item onClick={()=>dispatch(logout())}>Logout</NavDropdown.Item>
+            </NavDropdown>
+              
+            ) : (
+            <>
+            <Nav.Link as={Link} to="/login">Login
             </Nav.Link>
+            <Nav.Link as={Link} to="/register">Register
+            </Nav.Link>
+            </>
+            )}
             {/* <Nav.Link as={Link} to="/pricing">Pricing</Nav.Link> */}
             {/* <Nav.Link as={Link} to="/cart">
 
               CART
             </Nav.Link> */}
-            <NavDropdown title="User" id="basic-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/user/my-orders" eventKey="/user/my-orders">My Orders</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/user" eventKey="/user">My Profile</NavDropdown.Item>
-              <NavDropdown.Item >Logout</NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link as={Link} to="/login">Login
-            </Nav.Link>
-            <Nav.Link as={Link} to="/register">Register
-            </Nav.Link>
-            <Nav.Link as={Link} to="/cart">CART <span className='ms-1'></span><i className="bi bi-cart4"></i><Badge pill bg="danger">2</Badge>
+            <Nav.Link as={Link} to="/cart">CART <span className='ms-1'></span><i className="bi bi-cart4"></i><Badge pill bg="danger">{itemsCount==null ? "" : itemsCount}</Badge>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

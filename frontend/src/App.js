@@ -47,7 +47,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/product-list" element={<ProductList />} />
-            <Route path="/product-details" element={<ProductDetails />} />
+            {/* <Route path="/product-details" element={<ProductDetails />} /> */}
             <Route path="/product-details/:id" element={<ProductDetails />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LoginPage />} />
@@ -59,7 +59,7 @@ function App() {
               <Route path="/user" element={<UserProfilePage />} />
               <Route path="/user/my-orders" element={<UserOrdersPage />} />
               <Route path="/user/cart-details" element={<UserCartDetailsPage />} />
-              <Route path="/user/order-details" element={<UserOrderDetailsPage />} />
+              <Route path="/user/order-details/:id" element={<UserOrderDetailsPage />} />
             </Route>
           
 

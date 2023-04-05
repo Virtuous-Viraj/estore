@@ -5,7 +5,8 @@ import AdminLinksComponent from '../../../components/admin/AdminLinksComponent'
 
 
 import { useState, useEffect } from 'react'
-
+import { logout } from "../../../redux/actions/userActions";
+import { useDispatch } from "react-redux";
 
 function UsersPageComponent({ fetchUsers, deleteUser}) {
   const [users, setUsers] = useState([])
@@ -25,8 +26,9 @@ function UsersPageComponent({ fetchUsers, deleteUser}) {
 
   useEffect(() => {
     const abcctrl = new AbortController()
-    fetchUsers(abcctrl).then(res => setUsers(res)).catch(error =>
-      console.log(error.response.data.message ? error.response.data.message : error.response.data))
+    fetchUsers(abcctrl).then(res => setUsers(res)).catch((error) =>
+      // console.log(error.response.data.message ? error.response.data.message : error.response.data))
+      dispatchEvent(logout()))
       return () => abcctrl.abort()
       // return ()=> console.log("cleanup the effect")
   }, [userDeleted])
